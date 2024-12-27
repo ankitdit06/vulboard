@@ -1,0 +1,21 @@
+[
+{{- $first := true -}}
+{{- range . }}
+  {{- if .Vulnerabilities }}
+    {{- if not $first }},{{ end -}}
+    {
+      "product": "{{ .Target }}",
+      "dockerimage": "{{ .Target }}",
+      "vulnerabilities": [
+        {{- $firstVuln := true -}}
+        {{- range .Vulnerabilities }}
+          {{- if not $firstVuln }},{{ end -}}
+          "{{ .VulnerabilityID }}:{{ if .CVSS }}{{ range $source, $score := .CVSS }}{{ $score.V3Score | printf "%.1f" }}{{ break }}{{ end }}{{ else }}N/A{{ end }}"
+          {{- $firstVuln = false -}}
+        {{- end }}
+      ]
+    }
+    {{- $first = false -}}
+  {{- end }}
+{{- end }}
+]

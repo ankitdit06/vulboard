@@ -1,0 +1,14 @@
+{
+"fields": {
+  "product": { "path": "product" },
+  "dockerimage": { "path": "dockerimage" },
+  "vulnerabilities": {
+    "path": "vulnerabilities",
+    "type": "list",
+    "subfields": {
+      "cve_id": { "split_index": 0, "delimiter": ":" },
+      "score": { "split_index": 1, "delimiter": ":", "type": "float" }
+    }
+  }
+}
+}
