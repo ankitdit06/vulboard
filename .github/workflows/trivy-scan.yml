@@ -3,10 +3,10 @@ name: Scan Docker Image in GHCR
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   scan-docker-image:
