@@ -1,10 +1,10 @@
-[
+
 {{- $first := true -}}
 {{- range . }}
   {{- if .Vulnerabilities }}
     {{- if not $first }},{{ end -}}
     {
-      "product": "{{ .Target }}",
+      "product": "Nginx",
       "dockerimage": "{{ .Target }}",
       "vulnerabilities": [
         {{- $firstVuln := true -}}
