@@ -24,7 +24,7 @@ jobs:
         echo "$CR_PAT" | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
 
     - name: Scan Docker Image with Trivy Action
-      uses: aquasecurity/trivy-action@v0.29.0
+      uses: aquasecurity/trivy-action@0.28.0
       with:
         image-ref: "ghcr.io/${{ github.repository }}/vulboard:latest" # Replace with your image name
         format: "template" # Use Go template format for output
