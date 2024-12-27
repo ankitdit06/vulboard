@@ -28,7 +28,7 @@ jobs:
       with:
         image-ref: "ghcr.io/${{ github.repository }}/vulboard:latest" # Replace with your image name
         format: "template" # Use Go template format for output
-        template: ".github/trivy-format.tmpl" # Path to the Go template file
+        template: "@trivy-format.tmpl" # Path to the Go template file
         output: "trivy_report.txt"
 
     - name: Display CVE Report
