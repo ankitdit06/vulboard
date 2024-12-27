@@ -26,8 +26,9 @@ jobs:
     - name: Scan Docker Image with Trivy Action
       uses: aquasecurity/trivy-action@0.28.0
       with:
-        image-ref: "ghcr.io/${{ github.repository }}/vulboard:latest" # Replace with your image name
-        format: "json"
+        scan-type: 'fs' # Replace with your image name
+        format: "template" # Use Go template format for output
+        template: "@trivy-format.tmpl" # Path to the Go template file
         output: "trivy_report.txt"
 
     - name: Display CVE Report
