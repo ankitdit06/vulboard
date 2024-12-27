@@ -27,8 +27,7 @@ jobs:
       uses: aquasecurity/trivy-action@0.28.0
       with:
         scan-type: 'fs' # Replace with your image name
-        format: "template" # Use Go template format for output
-        template: "@trivy-format.tmpl" # Path to the Go template file
+        format: "json" # Use Go template format for output
         output: "trivy_report.txt"
 
     - name: Display CVE Report
