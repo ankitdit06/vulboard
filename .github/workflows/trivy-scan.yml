@@ -29,18 +29,18 @@ jobs:
         image-ref: "nginx" # Replace with your image name
         format: "template" # Use Go template format for output
         template: "@trivy-format.tmpl" # Path to the Go template file
-        output: "trivy_report.txt"
+        output: "trivy_report.json"
 
     - name: Display CVE Report
       run: |
-        echo "CVE Report:" && cat cve_report.json
+        echo "CVE Report:" && cat trivy_report.json
 
     - name: Upload CVE Report to API
       env:
         API_URL: ${{ secrets.API_URL }}
       run: |
           # Make a POST request with the CVE report
-          curl -X POST -H "Content-Type: application/json" --data @cve_report.json $API_URL
+          curl -X POST -H "Content-Type: application/json" --data @trivy_report.json $API_URL
 
     - name: Confirm Upload
       run: echo "CVE report uploaded successfully to ${{ secrets.API_URL }}"
