@@ -1,0 +1,31 @@
+name: Scan Docker Image in GHCR
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  scan-docker-image:
+    name: Trivy Scan Docker Image
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Log in to GitHub Container Registry
+      env:
+        CR_PAT: ${{ secrets.GHCR_PAT }} # Personal Access Token with read:packages scope
+      run: |
+        echo "$CR_PAT" | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+
+    - name: Scan Docker Image with Trivy Action
+      uses: aquasecurity/trivy-action@v0.7.0
+      with:
+        image-ref: "ghcr.io/${{ github.repository }}/vulboard:latest" # Replace with your image name
+        format: "template" # Use Go template format for output
+        template-file: ".github/templates/trivy-template.tmpl" # Path to the Go template file

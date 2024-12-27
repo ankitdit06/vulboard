@@ -1,0 +1,37 @@
+name: Build and Push Docker Image to GHCR
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    name: Build and Push Docker Image
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Log in to GitHub Container Registry
+      env:
+        CR_PAT: ${{ secrets.GHCR_PAT }} # Personal Access Token with write:packages scope
+      run: |
+        echo "$CR_PAT" | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Build and Push Docker Image
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        push: true
+        tags: |
+          ghcr.io/${{ github.repository }}/vulboard:latest
+          ghcr.io/${{ github.repository }}/vulboard:${{ github.sha }}
+
+    - name: Verify Docker Image in GHCR
+      run: |
+        docker pull ghcr.io/${{ github.repository }}/vulboard:latest
