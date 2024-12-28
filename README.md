@@ -144,5 +144,3 @@ Contributions are welcome! Feel free to submit issues or pull requests to improv
 This project is licensed under the [MIT License](LICENSE).
 
 ---
-
-For detailed documentation, visit the [Vulboard GitHub Repository](https://github.com/<your-repo-name>).
