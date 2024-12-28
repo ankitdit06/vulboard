@@ -1,0 +1,30 @@
+name: OpenSSF Scorecards
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  schedule:
+    - cron: '0 0 * * 0' # Runs weekly
+  workflow_dispatch:
+
+jobs:
+  scorecards:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Run Scorecards
+      uses: ossf/scorecard-action@v2
+      with:
+        results_file: results.json
+
+    - name: Display Scorecard Results
+      run: |
+        echo "Scorecard Results:"
+        cat results.json
