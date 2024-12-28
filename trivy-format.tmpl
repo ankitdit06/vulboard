@@ -1,7 +1,7 @@
 [
 {{- $first := true -}}
 {{- range . }}
-  {{- if .Vulnerabilities }}
+
     {{- if not $first }},{{ end -}}
     {
       "product": "Nginx",
@@ -16,6 +16,6 @@
       ]
     }
     {{- $first = false -}}
-  {{- end }}
+
 {{- end }}
 ]
