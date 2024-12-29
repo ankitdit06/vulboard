@@ -38,7 +38,7 @@ Vulboard is a custom-built vulnerability management tool designed to streamline 
 3. **Install the Helm Chart**
 
    ```bash
-   helm install vulboard ./vulboard-helm-chart
+   helm install vulboard .
    ```
 
 4. **Verify the Deployment**
