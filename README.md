@@ -24,8 +24,8 @@ Vulboard is a custom-built vulnerability management tool designed to streamline 
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/<your-repo-name>/vulboard-helm-chart.git
-   cd vulboard-helm-chart
+   git clone https://github.com/ankitdit06/vulboard-helm.git
+   cd vulboard-helm
    ```
 
 2. **Configure the Helm Chart**
@@ -94,7 +94,7 @@ jobs:
     - name: Scan Docker Image with Trivy Action
       uses: aquasecurity/trivy-action@0.28.0
       with:
-        image-ref: "nginx"
+        image-ref: "[your image name]"
         format: "template"
         template: "@trivy-format.tmpl"
         output: "trivy_report.json"
