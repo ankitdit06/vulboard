@@ -52,7 +52,7 @@ Vulboard is a custom-built vulnerability management tool designed to streamline 
      ```bash
      kubectl get svc
      ```
-   - If using Ingress, ensure DNS is configured correctly.
+   - If using Ingress, access the application using ingress IP or DNS.
 
 6. **Uninstall Vulboard** (Optional)
    ```bash
